@@ -1,0 +1,17 @@
+.mytext {
+  width: 120px;
+  text-align: center;
+}
+.equipment {
+  padding: 0;
+  margin: 0;
+}
+.equipment:hover {
+  cursor: pointer;
+}
+input {
+  margin-right: 16px;
+}
+.hide {
+  visibility: hidden;
+}

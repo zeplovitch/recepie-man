@@ -1,0 +1,24 @@
+<h4>Select Equipment</h4>
+<h6>click to select/unselect asset</h6>
+<ul class="list-group">
+  <li
+    *ngFor="let equipment of equipments"
+    class="list-group-item"
+    [ngClass]="{ active: equipment.isSelected }"
+  >
+    <div class="row">
+      <div class="col-7 equipment" (click)="toggle(equipment)">
+        {{ equipment.name }}
+      </div>
+      <div class="col-5">
+        <input
+          style="max-width:75px"
+          type="number"
+          [ngClass]="{ hide: !equipment.isSelected }"
+          class="form-control mytext"
+          [(ngModel)]="equipment.qty"
+        />
+      </div>
+    </div>
+  </li>
+</ul>

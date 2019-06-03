@@ -1,0 +1,15 @@
+img {
+  width: 100px;
+  height: 100px;
+  object-fit: scale-down;
+}
+.column {
+  float: left;
+  width: 20%;
+  padding: 5px;
+  box-shadow: 10px 10px 5px grey;
+}
+.title {
+  background-color: #ffff00;
+  font-weight: bold;
+}

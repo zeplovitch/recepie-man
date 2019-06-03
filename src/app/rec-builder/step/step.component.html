@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12"></div>
+    <h4>Steps Builder ( step no {{ step.number }})</h4>
+    <div class="col-2">
+      <span class="bigFont"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="float-right">
+        <button
+          type="button"
+          *ngIf="step.number > 1"
+          class="btn btn-primary "
+          (click)="prevStep(step.number)"
+        >
+          Prev Step
+        </button>
+        <button
+          [disabled]="!step.description"
+          type="button"
+          class="btn btn-primary "
+          (click)="nextStep(step.number)"
+        >
+          Next Step
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary "
+          [disabled]="step.number === 1 && !step.description"
+          (click)="finish()"
+        >
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 stepFrame">
+      <div class="form-group">
+        <label for="usr">Step Description</label>
+        <input
+          type="text"
+          class="form-control"
+          required
+          [disabled]="!title"
+          id="desc"
+          [(ngModel)]="step.description"
+          name="desc"
+        />
+      </div>
+      <div class="form-group">
+        <label for="Instructions">Step Instructions</label>
+        <textarea
+          [(ngModel)]="step.instructions"
+          class="form-control"
+          [disabled]="!title"
+          id="Instructions"
+          rows="3"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      Images/Videos
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="float-right">
+        <app-img-single
+          *ngIf="title"
+          (loadImageEvent)="loadImageEvent($event)"
+        ></app-img-single>
+      </div>
+    </div>
+  </div>
+  <div class="rowx">
+    <app-img-list
+      [imgFile]="image"
+      (deleteEmitter)="deleteEmitter(i)"
+      *ngFor="let image of step.uploader; index as i"
+    ></app-img-list>
+  </div>
+</div>
+
+<div></div>

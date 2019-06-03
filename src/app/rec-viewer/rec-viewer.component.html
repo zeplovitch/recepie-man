@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-11" *ngIf="!currentStep">
+    <h6>click on one of the items below to select a recepie</h6>
+    <ul class="list-group">
+      <li
+        *ngFor="let rec of listOfRecepies"
+        class="list-group-item"
+        (click)="getFullRecepie(rec.id)"
+      >
+        {{ rec.title }}
+      </li>
+    </ul>
+  </div>
+</div>
+<div *ngIf="currentStep">
+  <div class="row">
+    <div class="col-11">
+      <span class="title">Recepie Title</span> {{ recepie.title }}
+    </div>
+    <div class="col-1">
+      <button (click)="reset()">
+        <i class="material-icons">
+          settings_backup_restore
+        </i>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      <div class="wizard">
+        <p>
+          <span class="title">Step</span
+          ><span style="font-weight: bold;font-size: large">
+            {{ currentStep.number }}</span
+          >
+        </p>
+        <p>
+          <span class="title">Description</span> {{ currentStep.description }}
+        </p>
+        <p>
+          <span class="title">Instructions</span>
+          {{ currentStep.instructions }}
+        </p>
+        <div *ngFor="let i of currentStep.images">
+          <div class="column">
+            <img
+              style="width:100%"
+              src="{{ getImage(i) }}"
+              class="rounded float-left"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-2">
+      <table>
+        <tr>
+          <th>
+            Asset
+          </th>
+          <th>
+            Qty
+          </th>
+        </tr>
+        <tr *ngFor="let asset of recepie.assets">
+          <td>{{ asset.name }}</td>
+          <td>{{ asset.qty }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row" style="margin-top:25px">
+    <div class="col-12" style="text-align: center">
+      <button (click)="movePrev()">Prev Step</button>
+      <button (click)="moveNext()">Next Step</button>
+    </div>
+  </div>
+</div>

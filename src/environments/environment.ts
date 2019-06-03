@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  urlFile: 'http://localhost:3000/api/recepie',
+  urlBase: 'http://localhost:3000/api/',
+  imageBase: 'http://localhost:3000/'
 };
 
 /*

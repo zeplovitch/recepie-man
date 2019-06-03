@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-12">
+    <div class="form-group">
+      <input
+        type="text"
+        placeholder="Please enter the  Receipe title"
+        class="form-control"
+        id="ReceipeName"
+        name="ReceipeName"
+        [(ngModel)]="recepie.title"
+      />
+      <!-- [(ngModel)]="step.description" -->
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-4">
+    <app-equipment [equipments]="equipments"></app-equipment>
+  </div>
+  <div class="col-8">
+    <app-step
+      (nextStepEmitter)="nextStep($event)"
+      (prevStepEmitter)="prevStep($event)"
+      (finishEmitter)="finish()"
+      [step]="currnetStep"
+      [title]="recepie.title"
+    ></app-step>
+  </div>
+</div>
