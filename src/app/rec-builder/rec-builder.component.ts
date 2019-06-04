@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Step } from './step/step';
 import { Equipment } from './equipment/equipments';
 import { MainService } from '../main.service';
-import { Recepie } from './Recepie';
+import { Recipe } from './Recepie';
 
 @Component({
   selector: 'app-rec-builder',
@@ -11,30 +11,29 @@ import { Recepie } from './Recepie';
 })
 export class RecBuilderComponent implements OnInit {
   title = 'recepie-man';
-  steps: Step[];
-  recepie: Recepie;
+  recipe: Recipe;
   equipments: Equipment[];
   currnetStep: Step;
 
   prevStep(stepNo: number) {
     if (stepNo > 1) {
-      this.currnetStep = this.steps[stepNo - 2];
+      this.currnetStep = this.recipe.steps[stepNo - 2];
     } else {
-      this.currnetStep = this.steps[0];
+      this.currnetStep = this.recipe.steps[0];
     }
   }
   nextStep(stepNo: number) {
-    if (this.steps.length === stepNo) {
+    if (this.recipe.steps.length === stepNo) {
       this.addStep(stepNo + 1);
-      this.currnetStep = this.steps[this.steps.length - 1];
+      this.currnetStep = this.recipe.steps[this.recipe.steps.length - 1];
     } else {
-      this.currnetStep = this.steps[stepNo];
+      this.currnetStep = this.recipe.steps[stepNo];
     }
   }
   constructor(private mainService: MainService) {}
 
   addStep(step: number) {
-    this.steps.push({
+    this.recipe.steps.push({
       number: step,
       description: '',
       instructions: '',
@@ -42,11 +41,10 @@ export class RecBuilderComponent implements OnInit {
     });
   }
   finish() {
-    console.log(this.recepie.title);
     this.mainService
-      .finish(this.recepie, this.equipments)
+      .finish(this.recipe, this.equipments)
       .subscribe(responseData => {
-        alert('Receipe created !!');
+        alert('Recipe created !!');
       });
   }
   ngOnInit() {
@@ -58,16 +56,8 @@ export class RecBuilderComponent implements OnInit {
         alert('seems like you have a communication error with mongoDB');
       }
     );
-    this.recepie = new Recepie();
-    const firstStep = new Step();
-    this.steps = [firstStep];
-
-    this.recepie.steps = this.steps;
-    if (this.steps.length === 0) {
-      this.addStep(1);
-      this.currnetStep = this.steps[this.steps.length - 1];
-    } else {
-      this.currnetStep = this.steps[0];
-    }
+    this.recipe = new Recipe();
+    this.recipe.steps = [new Step()];
+    this.currnetStep = this.recipe.steps[0];
   }
 }

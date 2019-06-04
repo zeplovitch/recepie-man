@@ -10,3 +10,6 @@ img {
   height: 100px;
   object-fit: scale-down;
 }
+floatRight {
+  float: right;
+}

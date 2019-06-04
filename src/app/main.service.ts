@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Recepie } from './rec-builder/Recepie';
+import { Recipe } from './rec-builder/Recepie';
 import { Equipment } from './rec-builder/equipment/equipments';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -27,7 +27,7 @@ export class MainService {
       );
   }
   getRecepie(id: string) {
-    return this.http.get<Recepie>(environment.urlBase + 'recepie/' + id);
+    return this.http.get<Recipe>(environment.urlBase + 'recepie/' + id);
   }
   getAssets() {
     return this.http
@@ -47,7 +47,8 @@ export class MainService {
       );
   }
 
-  finish(recepie: Recepie, equipment: Equipment[]): Observable<any> {
+  finish(recipe: Recipe, equipment: Equipment[]): Observable<any> {
+    console.log(recipe);
     const selectedEquipment = equipment
       .filter(e => e.isSelected === true)
       .map(r => {
@@ -59,7 +60,7 @@ export class MainService {
     const stepsNoBinary = [];
     const binaries: File[] = [];
 
-    recepie.steps.forEach(s => {
+    recipe.steps.forEach(s => {
       if (s.description) {
         const images: string[] = [];
         s.uploader.forEach(q => {
@@ -76,7 +77,7 @@ export class MainService {
     });
 
     const postData = new FormData();
-    postData.append('title', recepie.title);
+    postData.append('title', recipe.title);
     postData.append('steps', JSON.stringify(stepsNoBinary));
     postData.append('equipment', JSON.stringify(selectedEquipment));
     binaries.forEach(binaryImage => {

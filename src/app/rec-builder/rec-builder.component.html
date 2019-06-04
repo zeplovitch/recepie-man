@@ -5,11 +5,10 @@
         type="text"
         placeholder="Please enter the recipe title"
         class="form-control"
-        id="ReceipeName"
-        name="ReceipeName"
-        [(ngModel)]="recepie.title"
+        id="RecipeName"
+        name="RecipeName"
+        [(ngModel)]="recipe.title"
       />
-      <!-- [(ngModel)]="step.description" -->
     </div>
   </div>
 </div>
@@ -23,7 +22,7 @@
       (prevStepEmitter)="prevStep($event)"
       (finishEmitter)="finish()"
       [step]="currnetStep"
-      [title]="recepie.title"
+      [title]="recipe.title"
     ></app-step>
   </div>
 </div>

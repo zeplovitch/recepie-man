@@ -15,19 +15,17 @@ import { MainService } from './main.service';
 import { PageErrorComponent } from './page-error/page-error.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
-import { InstructionsComponent } from './instructions/instructions.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     EquipmentComponent,
     StepComponent,
-
     ImgListComponent,
     ImgSingleComponent,
     RecBuilderComponent,
     RecViewerComponent,
-    PageErrorComponent,
-    InstructionsComponent
+    PageErrorComponent
   ],
   imports: [
     BrowserModule,

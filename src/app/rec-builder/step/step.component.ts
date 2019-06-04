@@ -15,22 +15,20 @@ export class StepComponent implements OnInit {
   @Output() finishEmitter = new EventEmitter<number>();
   constructor(private http: HttpClient) {}
 
-  // imageArray: File[] = [];
-
   deleteEmitter(index: number) {
     this.step.uploader.splice(index, 1);
   }
   loadImageEvent(event: any) {
     this.step.uploader.push(event);
-    console.dir(event);
   }
+
   ngOnInit() {}
 
-  nextStep(currentStep: number) {
-    this.nextStepEmitter.emit(currentStep);
+  nextStep(currentStepNumber: number) {
+    this.nextStepEmitter.emit(currentStepNumber);
   }
-  prevStep(currentStep: number) {
-    this.prevStepEmitter.emit(currentStep);
+  prevStep(currentStepNumber: number) {
+    this.prevStepEmitter.emit(currentStepNumber);
   }
   finish() {
     this.finishEmitter.emit();

@@ -3,13 +3,13 @@ export class Assets {
   name: string;
   qty?: number;
 }
-export class Recepie {
+export class Recipe {
   title: string;
   steps: Step[];
   assets: Assets[];
   constructor() {
     this.title = '';
-    this.steps = [];
+    this.steps = [new Step()];
     this.assets = [];
   }
 }
